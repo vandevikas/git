@@ -129,27 +129,91 @@ and git add will look for every change in this directory.
 git commit -m "Initial Commit"
 to add the change in repository or permenent memory.
 
+~Till Now we have not defined the location in GITHUB where this changes will be saved so they might be saved locally.
+
+So the basic process is:
+1. make changes.
+2. add the changes.
+3. commit the changes to the repository with a message.
 
 
+Writing commit messages:
+good descriptive commit message.
+
+commit message in present tense, as this is regarding the change. 
 
 
+Viewing the commit log:
+git log
+gives you all the commit logs
+
+git help log -> to get help
+
+git log -n 1 -> will return only one commit comment
+
+git log --since=2012-06-15 -> will return all comments since that date.
+
+git log --until=givenDate -> will return all comments till that date.
+ 
+git log --author="Vikas" -> can give partial name of the specific author.
+
+git log --grep="Any Expression or String in the commit"
+grep -> global regular expression search
+Will return commit containing that message.
+Can be of use if you want to search anything with help of commit.
 
 
+Exploring the three-trees architecture:
+
+two tree architecture -> other version control system use.
+
+1. repository and 2. working copy.
+
+checkout from repository to working copy.
+and commit to repository from working copy.
+
+Git has 3 tree architecture:
+1. repository 2. staging index 3. working
+
+staging index is extra in case of GIT.
+
+repository
+staging index		2. git commit file.txt
+working				1. git add file.txt
+
+we first move the file from working copy to staging index and then commit the file from staging index to repository.
+
+we can skip staging index step that we will learn later.
 
 
+Git Workflow:
+is explained above.
 
 
+Using hash values (SHA-1):
+Change set 
+
+SHA-1 hash algrithm to create checksums.
+it creates the commit id. that we see with commit.
+
+Working with the HEAD pointer.
+
+Git maintains a HEAD pointer which is a refrence variable.
+
+only points to current branch in repository and not staging or working copy.
+
+it points to last state of repository.
+
+head always points to latest commit in the repository and for any commit it will add after that making it parent of that commit.
+
+Head is the tip of currently checked out branch in the repository.
+
+git log HEAD 
 
 
-
-
-
-
-
-
-
-
-
+Adding files:
+git status
+gives us the difference between working copy, staging index and repository
 
 
 
