@@ -1,0 +1,163 @@
+Understanding version control:
+
+Git is software that keeps track of changes that you make to files and directories, and it is especially good in keeping track of text changes that you make.
+
+Because what it does is manage versions for you, Git is referred to as a Version Control System or VCS for short. 
+
+About distributed version control:
+
+Git is Distributed Version Control, different users --or teams of users--each maintain their own repositories instead of working from a central repository. And the changes are stored as change sets or patches, and we're focused on tracking changes not the versions of the document.
+
+SCSS, RCS, CVS, and SVN:
+And all four of these use a central code repository model, that is that there is one central place where you store the master copy of your code, and when you're working with the code you check out a copy from the master repository. You work with it make your changes, and then you submit those changes back to the central repository.
+
+Other users can also work from that repository submitting their changes. And it's up to us as users to keep up-to-date with whatever is happening in that central code repository, to make sure that we pull down and update any changes that other people have made.
+
+Git doesn't work that way, Git is Distributed Version Control, different users --or teams of users--each maintain their own repositories instead of working from a central repository. And the changes are stored as change sets or patches, and we're focused on tracking changes not the versions of the document.
+
+Now that's a subtle difference, you may think, well, CVS and SVN those track changes too, they don't. They track the changes that it takes to Git from version-to-version of each of the different files or the different states of a directory. Git doesn't work that way, Git really focuses on these change sets in encapsulating a change set as a discrete unit and then those change sets can be exchanged between repositories.
+
+We're not trying to keep up-to-date with the latest version of something instead the question is, do we have a change set applied or not? So there is no single master repository, there is just many working copies each with their own combination of change sets. Let me give an illustration to make this clear.
+
+And if you decide you don't like the way that a open source project is going, you can fork it, take it to a completely different direction and say, you know what, I'm going to just make a clean break and make my repository now the one that I'm going to work from, all of my changes will be submitted to there, and I can still pull change sets from the master one into my project whenever I want. But I don't have to, I can go my own way. That becomes a really powerful and flexible feature that's well suited to collaboration between teams especially loose groups of distributed developers like you have in the open source world. Distributed version control is an important part of the Git architecture that you need to keep in mind.
+
+
+just make sure that you understand that there is no central repository that we were from, all repositories are considered equal by Git, it's just a matter of whether a repository has change sets in it or doesn't.
+ 
+GIT is not a SVN tool, else it is distributed version control tool. So no central repository.
+
+
+Who should use Git?:
+
+it's really for anyone who wants to track edits, especially edits for text documents. It offers you the ability to review a log of changes that were made, to view differences between versions, and to retrieve old versions. Those features are not just limited to programmers, those are things that anyone working with the text file might want to be able to do.
+
+It doesn't work well with files that have to be interpreted by an application, word processing file, spreadsheets, PDF's, Photoshop PSD's, these kinds of files need an application to interpret them otherwise they're just a bunch of letters and numbers that Git won't understand. 
+
+So Git will again keep track of the fact that you've a Microsoft Word file in version 1 and in version 2, but it won't be able to show you the difference, the text that you changed between those two files.
+
+Git is VCS version control system.
+SVN and VCS are different things.
+
+
+Installing Git on Windows:
+
+The URL for that's http://git-scm.com--the scm, stands for source code management
+
+Artilce for setting up GIT on windows
+https://help.github.com/en/articles/set-up-git
+
+GitBash -> Git Unix (Bash is Unix environment)
+It is just like unix.
+
+dir	 		for getting directory files
+
+which git 	tells you where git is installed.
+
+git --version	give you version of git installed.
+
+
+Configuring Git:
+
+We can save configuration on following levels.
+1. System level configuration. 
+2. User level configuration. 
+	it is single user configuration and mostly used. in Windows it is saved at $HOME\.gitconfig
+3. Project by project basis.
+	they apply only to that specific project
+	location is my_project/.git/config
+	
+command to config these files 
+git config --andLevelWhereYouWantToConfi
+like
+git config --system
+
+User level:
+git config --global
+i.e global to the user.
+
+Project
+git config
+
+For adding User name:
+$ git config --global user.name "Vikas Singh"
+
+For adding email:
+$ git config --global user.email "vandevikas@gmail.com"
+
+for getting list of configrations done
+git config --list
+
+for getting specific config
+git config user.name
+git config user.email
+
+cat .gitconfig	
+will give you what the config file saves
+
+don't know more about it:
+git config --global core.editor "notepad.exe"
+
+for setting the colors to the console of git
+git config --global color.ui true
+
+Exploring Git auto-completion:
+Skipped for Windows as it already has this capability.
+
+
+git help
+will show you all git commands and all
+
+git help andTheCommandForWhichYouNeedHelp
+
+
+Initializing a repository:
+
+git init
+will setup the directory as homebase and make it as a Git repository and track all the files that come and go, changes done in this directory.
+
+
+Understanding where Git files are stored:
+git init command creates a .git directory inside the folder, and this .git folder contains many file and folders with which we don't need to mess.
+
+Only one file is of importance is config, it is project level configrations. We can edit this file as well.
+
+Performing your first commit:
+git add .
+. is for this directory.
+and git add will look for every change in this directory.
+
+git commit -m "Initial Commit"
+to add the change in repository or permenent memory.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
