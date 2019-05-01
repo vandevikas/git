@@ -213,7 +213,14 @@ git log HEAD
 
 Adding files:
 git status
-gives us the difference between working copy, staging index and repository
+gives us the difference between working copy, staging index and repository.
+
+it gives the status of staging directory and repository.
+
+Editing files:
+same process.
+like 
+git add fileName.txt
 
 
 
