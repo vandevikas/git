@@ -252,7 +252,7 @@ to see difference between staging and repository.
 So if you have added your changes by git add and then you want to see the difference then you have to see it in staging index via --staged.
 
 Deleting files:
-
+from repository
 
 
 
