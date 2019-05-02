@@ -254,7 +254,18 @@ So if you have added your changes by git add and then you want to see the differ
 Deleting files:
 from repository
 
+2 ways to delete file from repo:
+First way:
+1. Delete the file manually from working directory.
+2. do git status and you will see that file is showing as in red and deleted:
+3. use -> git rm fileToDelete.txt
+4. git status will now show in green that file is deleted from repo.
+5. git commit -m "Commit the deletion changes into the repo"
+6. git status will now not show anything about that file.
 
+rm -> remove.
+
+Second Way:
 
 
 
