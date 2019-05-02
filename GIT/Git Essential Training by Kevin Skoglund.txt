@@ -222,6 +222,50 @@ same process.
 like 
 git add fileName.txt
 
+Viewing changes with diff:
+In unix diff is used to compair 2 files.
+
+git diff
+will compair old version and new version.
+i.e will compair the file in repository i.e where the head is pointing at, with the file in our working copy.
+
+- is the line removed in working directory file
++ is lines added in local file
+
+i.e only shows the changes.
+
+also shows line numbers 
+
+git diff -> will show all the changes in all the files.
+
+git diff fileName.txt -> will show only changes in perticular file.
+
+
+Viewing only staged changes:
+Actually
+if you edit a file in working directory and do git diff you will see the changes.
+But now if you do git add and move this file to staging index and then do git diff then you will see no difference i.e. git diff only compairs files in stagigning and working dir.
+
+git diff --staged
+to see difference between staging and repository.
+
+So if you have added your changes by git add and then you want to see the difference then you have to see it in staging index via --staged.
+
+Deleting files:
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
