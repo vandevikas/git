@@ -259,13 +259,81 @@ First way:
 1. Delete the file manually from working directory.
 2. do git status and you will see that file is showing as in red and deleted:
 3. use -> git rm fileToDelete.txt
-4. git status will now show in green that file is deleted from repo.
+4. git status will now show in green that file is deleted from staging.
 5. git commit -m "Commit the deletion changes into the repo"
 6. git status will now not show anything about that file.
 
 rm -> remove.
+It is just like adding changes just opposite in action, i.e remove changes.
 
 Second Way:
+1. git rm fileToDelete.txt
+Unix will completely delete the file from your system.
+2. git status
+You will see a message deleted: fileToDelete.txt
+i.e. by git rm fileToDelete we moved to staging area.
+3. git commit -m "Removing file from repo"
+
+it is simple way i.e 1. rm file and then 2. commit the deletion step.
+
+Moving and renaming files:
+2 Ways:
+
+Just like deletion of file first way is to manually do the step and let git find out what changed.
+Second way is to do it via git.
+
+1. Manual Renaming of file:
+
+1. If you rename a file and do git status
+than you see that the file you renamed is deleted and the git shows there is one new file added i.e. untracked files is added.
+
+git shows:
+deleted: fileIWantToRename.txt
+Untracked files: renamedFile.txt
+
+2. Now add that new file to staging.
+and remove renamed file.
+i.e. 
+git add renamedFile.txt
+git rm fileIWantToRename.txt
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
