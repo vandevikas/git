@@ -297,10 +297,13 @@ i.e.
 git add renamedFile.txt
 git rm fileIWantToRename.txt
 
+3. git status
+will show you that renamedFile.txt is renamed to fileIWantToRename.txt
+renamed: xyz.txt -> zyx.txt
 
+4. Now commit the changes.
 
-
-
+Second way: Git doing it for you.
 
 
 
