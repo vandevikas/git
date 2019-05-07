@@ -305,22 +305,263 @@ renamed: xyz.txt -> zyx.txt
 
 Second way: Git doing it for you.
 
+1. git mv fileToRename.txt RenamedFile.txt
+mv is for move in Unix which is used to rename.
+
+This step will rename the file and will also add the file to staging index.
+
+2. git status will show that file is renamed:
+
+3. commit the changes.
 
 
+Moving the file to another directory:
+
+1. git mv fileToMove.txt directoryToMove/fileToMove.txt
+here we want to keep the name as same for the moved file so we are keeping it same, else we could change name as well.
+
+2. git status 
+will show the file is renamed: 
+as move and renaming is almost same thing.
+
+also mv will do moving at working copy as well as staging index.
+
+3. commit it.
 
 
+Real World Exposure:
+
+Introducing the Explore California web site
+
+dir -> to see all the files and folders in a folder.
+
+cd folderName -> to go into the folder.
 
 
+git diff 
+shows
+@@ -71,7 +71,7 @@ 
+which is actually line number with number of lines i.e at line number 71 with count of 7 line will be shown in diff.
+
+git diff --color-words fileName.txt
+It will show difference in same line instead of differnet lines as one red and one green.
+now both red and green will be on same line.
 
 
+adding files from working directory to repo directiory, and staging index in single line.
+
+git commit -am ""
+
+is like:
+git add .
+git commit -m ""
+
+Points to remember:
+1. All modified files will be committed. commit of selected files via this method is not possible.
+
+2. Renaming/Deletion/Moving don't work.
+Untracked files are also not included.
 
 
+if you are at (git bash is at) abc directory and want to add files from abc\xyz directory then you can do is
+
+git add xyz/
+
+you can put * after xyz/ like xyz/*
 
 
+Undoing working directory changes:
+And taking changes from repository.
+
+git checkout -- index.html
+
+-- indicates that we are not checking out a new branch instead we are take update from current branch.
+
+as git checkout is also used to take branch checkout.
+
+lets say we have a folder in current branch named as resources and if we do
+git checkout resources
+then git checks that whether a branch exists named as resources? if yes then git will take checkout of new branch instead of taking update of current branch folder named as resources.
+
+so we could do is:
+git checkout -- resources
+to take update of current branch only.
+
+It will download file from git repository and will remove local working directory file/folder
 
 
+Unstaging files:
+i.e. removing changes from staging index and keep that changes in working directory.
+
+git reset HEAD fileName.txt 
+git status 
+will now give you that fileName.txt changes are not staged. and the file is modified: (in red)
 
 
+Amending commits:
+You can edit the last/latest commit where HEAD points to.
+You can't edit any other commits as it will break git integraty.
+
+last commit can be changed using amend option.
+ 
+so if you want to add some more commits to last commit. OR
+if you want to update commit message you can do it via ammend.
+like, bring a file to staging index and perform commit with amend.
+
+git commit --amend -m "Message"
+this will include the staging file to previous commit. instead of a new commit.
+
+Of don't stage anything to index and to update the commit message you can do
+git commit --amend -m "Updated message"
+
+git log -> to see updated message in the commit.
+
+
+Retrieving old versions:
+
+git log 
+to see the previous commits (also to take the SHA code)
+
+copy SHA code of the commit you want to revert. (10-12 chars enough to copy)
+
+git checkout 2351edg7458 -- fileName.txt
+
+git status 
+will show you that file is now moved into staging index from repo.
+
+git diff --staged
+to see the difference between stage and working directory. 
+/*
+git reset HEAD fileName.txt 
+to put file in working directory 
+git checkout --fileName.txt 
+*/
+
+Reverting a commit:
+Revert command.
+
+Anything that is modified will be changed to its previous state.
+i.e if anything is added it is now deleted or if anything is deleleted will be added as a result of this revert command.
+
+git revert ds526745scg
+only this single step will do all revert for you
+
+it is good if things are simple, i.e reverting a single or set of files.
+But if things gets complex like files are moved or renamed then git has provided a set of rules.
+which is just like merging.
+
+
+Using reset to undo commits:
+caution required to use this command.
+git reset
+allows you to specify where HEAD pointer should point to.
+
+git reset always moved the HEAD pointer. 
+
+--soft 
+	does not change staging index or working directory.
+--mixed(default)
+	moves the HEAD pointer to specified commit and changes the staging index to match repository
+	does not change working directory.
+--hard
+	moves the HEAD pointer to specified commit and changes staging index and working directory to match repository.
+	
+	
+Demonstrating a soft reset:
+
+cat .git/HEAD
+will return:- ref: refs/heads/master
+cat .git/refs/heads/master
+will return:- 5c86abd1fb3844 (SHA code)
+
+git reset --soft da38660bbcd206
+with this command we are moving the head pointer from 5c86abd1fb3844 to da38660bbcd206. 
+i.e moving the head pointer from latest commit to previous commits.
+
+and now if you do 
+cat .git/refs/heads/master
+will return:- da38660bbcd206 
+as head now points to this commit.
+
+git log 
+will also show you latest commit is da38660bbcd206.
+
+git status
+will show you that in staging index and working directory -- the files are in latest modified state. 
+i.e we still have our changes at staging index and working directory.
+
+You can now record a new commit and it will commit over the previous latest commit.(though the previous latest commit content will be ignored by git)
+
+or you can point the HEAD pointer to point back to the latest commit.
+
+git reset --soft 5c86abd1fb3844
+
+git status.
+
+soft reset is safest as nothing is removed from staging or working dir.
+
+
+Demonstrating a mixed reset
+
+just like soft reset just it will update staging index also with the repository.
+
+git reset --mixed da38660bbcd206
+
+Demonstrating a hard reset
+Most destructive, as repo, staging and working are same after reset
+
+git reset --hard da38660bbcd206
+
+git reset --hard 5c86abd1fb3844
+this latest commit was not deleted or removed and if we want we can again go to this pointer.
+
+this might be taken by the garbage collector if we don't access to it for a long time.
+
+
+Removing untracked files:
+git clean 
+to remove all extra files that you don't want to go to repo.
+
+git clean -n 
+tells you wat all files will it remove.
+
+git clean -f
+will remove files only from working directory and not from stagin index
+
+   
+Using .gitignore files:
+some log files that are constantly changing should be ignored.
+there are many other temp files or data files that we don't want to send to repo.
+
+create a special file at the root of our project or root of our working directory as .gitignore
+project/.gitignore
+
+this file contains set of rules for git to know which files to include for commit or which files to ignore.
+
+can use very basic regular expressions
+
+* ? [aeiou] [0-9]
+negate expressions with !
+
+*.php	-> ignore any file that ends with .php
+!index.php -> but not ignore index.php
+so other php files are not tracked but index.php files are tracked
+
+ignore all files in a directory with trailing slash
+assets/videos/
+so all files in videos are ignored
+
+comment lines begin with #
+blank lines are skipped.
+
+open NotePad or ++
+and save as a file with type as all and give it name as .gitignore
+
+
+or in git bash type 
+nano .gitignore
+it will create a new file called .gitignore
+and will open the file for you, you can type things and can save by using Ctrl + what ever is suggested by screen.
 
 
 
