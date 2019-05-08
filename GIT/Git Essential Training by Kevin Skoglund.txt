@@ -675,10 +675,83 @@ ancestry
 	-HEAD^^^, acf87504^^^, master^^^
 	-HEAD~3
 	
+ls -la works with Windows Git Bash as well.
+
+
+git ls-tree HEAD
+will show you all the files in the head in the reop directory
+
+git ls-tree master
+same output as above command.
+
+git ls-tree master directoryName/
+will show all the files in directoryName
+
+git ls-tree master^ directoryName/
+will show directory in previous state
+
+blob is any file saved in repo.
+tree is a directory.
+
+Getting more from the commit log:
+
+If the content to show on GIT Bash is very large then you see 
+:
+in the end of file.
+and if you press SPACE then more content is shown to you.
+and then : changes to (END)
+now press q to exit.
+
+git log --oneline
+all commits are compressed in single one line.
+
+git log --oneline -3 
+will show only last 3 commits
+
+git log --since="2019-05-01"
+all commits since May first.
+
+git log --after="2019-05-01"
+same as since
+
+git log --until="2019-05-01"
+all commits till this date.
+git log --before="2019-05-01"
+same as until
+
+git log --since="1 weeks ago" --until="1 days ago"
+and you will get output as desired.
+
+git log --since="1.weeks" --until="1.days"
+same thing
+
+search by author
+git log --author="Vikas"
+
+
+grep -> global regular expressions search.
+git log --grep="temp"
+you will see all commits, message having temp keyword.
+
+nice to see all the commits for certain topic or defect id or story id
+
+
+git log --2907d12..acf8750 --oneline
+to see all the commits between above two SHA codes.
+
 	
+to see what happened to a perticular file from any given commit till today:
 
+git log c4b913.. index.html
+SHA code not given after .. and then given file name.
+all the logs that affected this file will be shown. very specific commits will be shown.
 
+git log -p
+to get more info for the commit.
+and it shows a diff about what changed in the files regarding that commit.
 
+git log -p c4b913.. index.html
+will show commits applied to this file also will show what changes were in this file.
 
 
 
