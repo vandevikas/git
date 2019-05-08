@@ -564,28 +564,118 @@ it will create a new file called .gitignore
 and will open the file for you, you can type things and can save by using Ctrl + what ever is suggested by screen.
 
 
+log/*.log	-> will ignore all files end with .log in log directory.
+
+assets/videos/	-> ignore all videos in videos folder.
+!assets/videos/tour_*.mp4	-> don't ignore videos in videos floder which starts with tour_ and ends with .mp4
+
+log/archive/access.log -> will not be ignored as a result of log/*.log 
 
 
+Understanding what to ignore:
+following files should be ignored:
+compiled source code.
+logs and databases
+OS generated files.
+user-uplodaed assets.
+
+as above files are not related to project so ignore them.
+
+for java you can ignore following files:
+*.class
+
+# Package Files
+*.jar
+*.war
+*.ear
+
+for windows os these files can be ignored
+# Windows image file caches
+Thumbs.db
+
+#Folder config file
+Desktop.ini
+
+#Recycle Bin used on file shares
+$RECYCLE.BIN/
 
 
+Ignoring files globally:
+-ignore files in all repositories.
+-settings not tracked in repository, they are not part of repo but are part of git config and not project config.
+-user specifc instead of repository-specifc
+
+so these are local files specific to user. and not shared with anyone else
+
+it is done by:
+git config --global core.excludesfile ~/.gitignore_glbal  
 
 
+git config --global core.excludesfile /Users/p639954/.gitignore_global  
+
+where ~ is for unix command for full path.
+
+and .gitignore_global is the file name containing files to be ignored at global level
 
 
+Ignoring tracked files:
+If you have already committed a file and now git has started tracking that file. But then you create a .gitignore file and add this file to gitignore so that git don't track it.
+But since the file was committed before creating .gitignore file git will keep tracking the changes of the file.
+
+How to ignore this file than?
+best way to edit .gitignore file is to do it from command prompt by:
+nano .gitignore
 
 
+first thing is to tell git to stop tracking it, by removing that file:
+git rm tempfile2.txt
+
+but if we don't want to remove this file than:
+git rm --cached tempfile2.txt
+it will remove the file from staging index but the file stays in repo.
+now the file will be stoped being tracked. with a copy in repo and working directory.
+
+git status
+will show that the file is deleted but if you see working directory you will still find that file there.
+
+git commit -m "Removed tempfile2.txt from staging index"
+
+ 
+Tracking empty directories:
+git does not track empty directory, git only tracks files and directories that take git to that file.
+i.e if you add an empty directory in the working directory then git will not find it untill you put some file in this folder.
+
+so to track an empty directory you have to cheat git by putting a small file in there like .gitignore or .gitkeep
+
+normally create a .gitkeep file.
 
 
+Referencing commits:
 
-
-
-
-
-
-
-
-
-
+tree-ish
+is just something points out a commit.
+full SHA-1 hash
+short SHA-1 hash
+	at least 4 chars
+	unambigous(8-10 chars)
+HEAD pointer 
+branch refrence
+ancestry
+	parent commit 
+	-HEAD^, acf87504^, master^
+	carrot is pointing up.
+	-HEAD~1, HEAD~
+		HEAD~1 means we are going back 1 point. HEAD~ means same.
+	Above all methods are to refer the parent commit of the HEAD.
+	
+	grandparent commit
+	-HEAD^^, acf87504^^, master^^
+	-HEAD~2
+	great-grandparent commit
+	-HEAD^^^, acf87504^^^, master^^^
+	-HEAD~3
+	
+	
 
 
 
