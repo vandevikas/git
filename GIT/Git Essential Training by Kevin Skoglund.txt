@@ -753,6 +753,204 @@ and it shows a diff about what changed in the files regarding that commit.
 git log -p c4b913.. index.html
 will show commits applied to this file also will show what changes were in this file.
 
+git log --format=oneline 
+same as oneline but you will get a full SHA.
+
+git log --format=short
+git log --format=full
+git log --format=medium
+git log --format=fuller
+git log --format=email
+git log --format=raw
+
+git log --graph
+best to see if we do branches and merge those branches back.
+
+git log --oneline --graph --all --decorate
+
+
+
+Viewing commits:
+to see what changed in a specific commit.
+
+git show SHACodeOfCommit
+
+so do:
+git log --oneline
+to get SHACodeOfCommit
+
+git show cdae0be32
+and you will see what all happened in that commit.
+
+git show --format=oneline HEAD
+
+git show --format=oneline HEAD^
+
+git show --format=oneline HEAD~3
+
+git help show
+will show you how "show" can be used with blobs(files), trees(directory), commits(that we are working above with)
+
+for trees it shows directory names 
+git ls-tree master 
+
+git show SHACodeOfTree 
+i.e. you will get SHA code from ls-tree command and put in show command 
+and out put you get is all the file and folder inside the directory (tree)
+ 
+
+for blobs it shows plain content of the file.
+git show SHACodeOfBlob
+
+and you will get all the content of that file.
+
+git show index.html
+is not valid command as index.html is not tree-ish
+you can only pass tree-ish thing here.
+
+
+Comparing commits
+comparing two different commits for the actual state of all the files in the repo at that point of time.
+
+we had used "git diff" for it for difference between working directory and staging index, i.e the changes we have made reciently that are not staged.
+
+once we add the changes into staging area then git diff don't show any change
+
+then we need to do --staged or --cashed and it shows difference between staging index and repo.
+git diff --cashed
+
+   
+git log --oneline
+pick any commit's SHA code  lets say cdae0ed
+
+git diff cdae0ed
+it will show all the differences for directory at above commit with current head of directory.
+
+it shows all the changes between the current state of repo with the commit SHA code you pass.
+
+ 
+
+git diff cdae0ed tours.html
+it will now give the difference for this specific file only.
+
+we can compair any two commits:
+git diff cf78db8..cdae0ed
+i.e.
+git diff SHAofFirstCommit..SHAofSecondCommit
+
+will give you all the differences between two states.
+
+
+git diff cf78db8..cdae0ed tours.html
+for specific file change.
+
+
+git diff --stat --summary 1306576..HEAD
+it will give you summary of what ever changed.
+
+git diff --ignore-space-change 1306576..HEAD
+
+same as above:
+git diff -b 1306576..HEAD
+it will ignore white spaces change.
+
+git diff --ignore-all-space 1306576..HEAD
+
+same as above
+git diff --w 1306576..HEAD
+all spaces are ignored.
+
+
+Branching overview:
+Branch is mainly used for trying new stuff on your project, like if you have a new idea and you implement it on master with lots of commits and if that idea is not successful then you need to revert everything.
+Instead you can take a branch of your master and if the ideas don't work out just throw away the branch.
+
+And if your ideas workout then you can mearge your branch to master.
+
+
+git branch
+will show all branches on our local machine.
+right now showing only 
+*master.
+* shows it is current branch.
+
+cat .git/HEAD
+ref: refs/heads/master
+shows the head pointing to which branch.
+
+ls -la .git/refs/heads
+
+
+git branch new_feature
+will create a new branch for you
+
+git branch -> will show you all branches
+*master
+new_feature
+
+ls -la .git/refs/heads
+will show you master and new_feature branches.
+
+
+git checkout new_feature
+git checkout nameOfTheBranchYouWantToSwitch
+
+will switch you to the name you put.
+
+git branch -> will give you:
+master
+*new_feature
+now new_feature is selected so it has *
+
+Creating and switching branches:
+
+git checkout -b shorten_title
+it will create a new branch and will switch to it, and to veriy this do 
+git branch 
+O/P:
+master 
+new_feature
+*shorten_title
+
+You will see that shorten_title has the * so it is selected.
+
+
+checkout command is also used to discard the changes in working directory. the command is like:
+git checkout -- fileName
+here -- tells git that it is for discarding the changes and not for branch checkout.
+
+
+git log --graph --oneline --decorate --all
+it shows all commits with tip of each branch.
+like: Code, branch, commit
+HEAD, shorten_title -> as head is on this brach
+new_feature andCommitDoneHere
+master andCommitDoneHere	
+
+
+Switching branches with uncommitted changes:
+if there are some uncommitted changes sitting in working directory then you can't switch to other branch.
+
+like git checkout master 
+will give you error, your local changes to the following files would be overwritten by checkout.
+
+
+You can now either 1. discard the changes by git checkout -- fileName 
+or 2. commit the changes or 3. stash the changes.
+
+
+Comparing branches:
+You can compair different branches by diff command.
+
+git diff master..new_feature
+will show you all the difference between any two branches.
+
+
+
+
+
+
+
 
 
 
